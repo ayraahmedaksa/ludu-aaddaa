@@ -96,12 +96,15 @@
         <div class="container">
             <!-- Home Page -->
             <div id="page-home" class="page">
-                <div class="hero">
-                    <span class="hero-kicker">বাংলাদেশের নতুন অনলাইন লুডু প্ল্যাটফর্ম</span>
-                    <h1>লুডু খেলুন,<br><strong>বন্ধুদের চ্যালেঞ্জ করুন</strong></h1>
-                    <p>রিয়েল-টাইম ম্যাচ, টুর্নামেন্ট, চ্যাট এবং সুন্দর ক্লাসিক লুডু অভিজ্ঞতা—সব এক জায়গায়।</p>
-                    <div class="hero-actions"><button class="btn-primary btn-large" onclick="showPage('lobby')">এখনই খেলুন <i class="fas fa-arrow-right"></i></button><button class="btn-secondary btn-large" onclick="openAuth()">অ্যাকাউন্ট খুলুন</button></div>
-                    <div class="hero-trust"><span>৫০,০০০+</span> সম্ভাব্য খেলোয়াড় · <span>২৪/৭</span> সাপোর্ট</div>
+                <div class="hero banner-hero" aria-label="লুডু আড্ডা প্রচার ব্যানার">
+                    <div class="banner-track">
+                        <article class="hero-banner banner-one"><span class="hero-kicker">লুডু আড্ডা</span><h1>বন্ধুদের সঙ্গে<br><strong>অনলাইনে খেলুন</strong></h1><p>রিয়েল-টাইম লুডু ম্যাচে আজই যোগ দিন।</p><button class="btn-primary" onclick="showPage('lobby')">এখনই খেলুন <i class="fas fa-arrow-right"></i></button><b class="banner-art">♟ ⚄ ♟</b></article>
+                        <article class="hero-banner banner-two"><span class="hero-kicker">সাপ্তাহিক ইভেন্ট</span><h1>জিতুন <strong>চ্যাম্পিয়ন ব্যাজ</strong></h1><p>লিডারবোর্ডে উঠুন, নিজের স্কোর দেখান।</p><button class="btn-primary" onclick="toast('ইভেন্ট শীঘ্রই শুরু হবে')">ইভেন্ট দেখুন</button><b class="banner-art">♛ ★</b></article>
+                        <article class="hero-banner banner-three"><span class="hero-kicker">নতুন খেলোয়াড়দের জন্য</span><h1>প্রথম ম্যাচে<br><strong>সহজ শুরু</strong></h1><p>সুন্দর গাইড, দ্রুত লবি ও সহজ নিয়ম।</p><button class="btn-primary" onclick="openAuth()">অ্যাকাউন্ট খুলুন</button><b class="banner-art">⚄</b></article>
+                        <article class="hero-banner banner-four"><span class="hero-kicker">বন্ধুদের রুম</span><h1>নিজের রুম তৈরি<br><strong>বন্ধুকে আমন্ত্রণ</strong></h1><p>প্রাইভেট ম্যাচে নিজের বন্ধুদের সঙ্গে খেলুন।</p><button class="btn-primary" onclick="openAuth()">রুম তৈরি করুন</button><b class="banner-art">♟♟</b></article>
+                        <article class="hero-banner banner-five"><span class="hero-kicker">কমিউনিটি চ্যাট</span><h1>খেলার মাঝে<br><strong>বন্ধুত্বও হোক</strong></h1><p>রুম চ্যাটে কথা বলুন এবং নতুন খেলোয়াড়ের সঙ্গে পরিচিত হন।</p><button class="btn-primary" onclick="showPage('lobby')">কমিউনিটি দেখুন</button><b class="banner-art">☁ ♡</b></article>
+                        <article class="hero-banner banner-six"><span class="hero-kicker">Android অ্যাপ</span><h1>যেখানেই থাকুন<br><strong>খেলা থাকুক সাথে</strong></h1><p>লুডু আড্ডা APK ডাউনলোড করে দ্রুত খেলুন।</p><button class="btn-primary" onclick="toast('APK ডাউনলোড শীঘ্রই')">অ্যাপ ডাউনলোড</button><b class="banner-art">▣ ⚄</b></article>
+                    </div><div class="banner-dots" aria-label="ব্যানার নেভিগেশন"><i class="active"></i><i></i><i></i><i></i><i></i><i></i></div>
                 </div>
                 <div class="feature-heading"><span>কেন লুডু আড্ডা?</span><h2>খেলার জন্য যা কিছু দরকার</h2><p>ক্লাসিক বোর্ড গেমের আনন্দের সঙ্গে আধুনিক অনলাইন ফিচার।</p></div>
                 <div class="feature-grid"><article class="feature-card"><i class="fas fa-users"></i><h3>মাল্টিপ্লেয়ার</h3><p>বন্ধু বা দেশের অন্য খেলোয়াড়ের সঙ্গে রিয়েল-টাইম ম্যাচ।</p></article><article class="feature-card"><i class="fas fa-trophy"></i><h3>টুর্নামেন্ট</h3><p>দৈনিক ও সাপ্তাহিক প্রতিযোগিতায় অংশ নিন।</p></article><article class="feature-card"><i class="fas fa-comments"></i><h3>চ্যাট ও কমিউনিটি</h3><p>খেলোয়াড়দের সঙ্গে কথা বলুন, রুমে যোগাযোগ রাখুন।</p></article><article class="feature-card"><i class="fas fa-shield-halved"></i><h3>নিরাপদ ও স্বচ্ছ</h3><p>ম্যাচ রেকর্ড, রিপোর্ট ও অ্যাডমিন পর্যবেক্ষণ সুবিধা।</p></article></div>
