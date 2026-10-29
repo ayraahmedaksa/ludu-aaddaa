@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/landing.css">
 </head>
 <body>
     <!-- Auth Modal -->
@@ -96,11 +97,16 @@
             <!-- Home Page -->
             <div id="page-home" class="page">
                 <div class="hero">
-                    <h1>লুডু আড্ডা খেলুন, টাকা জিতুন</h1>
-                    <p>সরাসরি ক্লায়েন্ট নিয়ন্ত্রিত প্ল্যাটফর্ম</p>
-                    <button class="btn-primary btn-large" onclick="showPage('lobby')">এখনই খেলুন <i class="fas fa-arrow-right"></i></button>
+                    <span class="hero-kicker">বাংলাদেশের নতুন অনলাইন লুডু প্ল্যাটফর্ম</span>
+                    <h1>লুডু খেলুন,<br><strong>বন্ধুদের চ্যালেঞ্জ করুন</strong></h1>
+                    <p>রিয়েল-টাইম ম্যাচ, টুর্নামেন্ট, চ্যাট এবং সুন্দর ক্লাসিক লুডু অভিজ্ঞতা—সব এক জায়গায়।</p>
+                    <div class="hero-actions"><button class="btn-primary btn-large" onclick="showPage('lobby')">এখনই খেলুন <i class="fas fa-arrow-right"></i></button><button class="btn-secondary btn-large" onclick="openAuth()">অ্যাকাউন্ট খুলুন</button></div>
+                    <div class="hero-trust"><span>৫০,০০০+</span> সম্ভাব্য খেলোয়াড় · <span>২৪/৭</span> সাপোর্ট</div>
                 </div>
-                
+                <div class="feature-heading"><span>কেন লুডু আড্ডা?</span><h2>খেলার জন্য যা কিছু দরকার</h2><p>ক্লাসিক বোর্ড গেমের আনন্দের সঙ্গে আধুনিক অনলাইন ফিচার।</p></div>
+                <div class="feature-grid"><article class="feature-card"><i class="fas fa-users"></i><h3>মাল্টিপ্লেয়ার</h3><p>বন্ধু বা দেশের অন্য খেলোয়াড়ের সঙ্গে রিয়েল-টাইম ম্যাচ।</p></article><article class="feature-card"><i class="fas fa-trophy"></i><h3>টুর্নামেন্ট</h3><p>দৈনিক ও সাপ্তাহিক প্রতিযোগিতায় অংশ নিন।</p></article><article class="feature-card"><i class="fas fa-comments"></i><h3>চ্যাট ও কমিউনিটি</h3><p>খেলোয়াড়দের সঙ্গে কথা বলুন, রুমে যোগাযোগ রাখুন।</p></article><article class="feature-card"><i class="fas fa-shield-halved"></i><h3>নিরাপদ ও স্বচ্ছ</h3><p>ম্যাচ রেকর্ড, রিপোর্ট ও অ্যাডমিন পর্যবেক্ষণ সুবিধা।</p></article></div>
+                <div class="preview-banner"><div><span>গেম স্ক্রিন প্রিভিউ</span><h2>নিজের অ্যাপেই খেলুন</h2><p>Android অ্যাপ ও ওয়েব—একই অ্যাকাউন্ট, একই প্রোফাইল।</p><button class="btn-primary" onclick="showPage('lobby')">গেম লবি দেখুন</button></div><div class="preview-board"><i>⚄</i><b>লুডু<br><em>আড্ডা</em></b></div></div>
+                <div class="feature-heading compact"><span>কমিউনিটি</span><h2>খেলা শুরু করার জন্য প্রস্তুত?</h2><p>আজই অ্যাকাউন্ট তৈরি করে লুডু আড্ডায় যোগ দিন।</p></div>
                 <div class="info-cards">
                     <div class="info-card">
                         <i class="fas fa-coins"></i>
