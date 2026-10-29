@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<link rel="stylesheet" href="../shared/app-theme.css">
+<link rel="stylesheet" href="../shared/reference-site-theme.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>লুডু আড্ডা - খেলুন</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Auth Modal -->
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="authTitle">লগইন</h2>
+                <span class="close" onclick="closeAuth()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div id="loginFormDiv">
+                    <div class="form-group">
+                        <label>মোবাইল নম্বর</label>
+                        <input type="text" id="loginPhone" placeholder="01XXXXXXXXX">
+                    </div>
+                    <div class="form-group">
+                        <label>পাসওয়ার্ড</label>
+                        <input type="password" id="loginPass" placeholder="পাসওয়ার্ড">
+                    </div>
+                    <button class="btn-primary full" onclick="login()">লগইন করুন</button>
+                    <p class="text-center mt-10">নতুন ইউজার? <a href="#" onclick="showRegister()">রেজিস্ট্রেশন করুন</a></p>
+                </div>
+                <div id="registerFormDiv" style="display: none;">
+                    <div class="form-group">
+                        <label>মোবাইল নম্বর</label>
+                        <input type="text" id="regPhone" placeholder="01XXXXXXXXX">
+                    </div>
+                    <div class="form-group">
+                        <label>নাম (ঐচ্ছিক)</label>
+                        <input type="text" id="regName" placeholder="আপনার নাম">
+                    </div>
+                    <div class="form-group">
+                        <label>পাসওয়ার্ড</label>
+                        <input type="password" id="regPass" placeholder="পাসওয়ার্ড">
+                    </div>
+                    <div class="form-group">
+                        <label>রেফারেল কোড (ঐচ্ছিক)</label>
+                        <input type="text" id="refCode" placeholder="রেফারেল কোড">
+                    </div>
+                    <button class="btn-primary full" onclick="register()">রেজিস্ট্রেশন করুন</button>
+                    <p class="text-center mt-10">ইতিমধ্যে অ্যাকাউন্ট আছে? <a href="#" onclick="showLogin()">লগইন করুন</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-content">
+            <div class="logo">লুডু <span>আড্ডা</span></div>
+            <div class="header-right">
+                <div id="userInfo" style="display: none;">
+                    <button class="wallet-btn" onclick="showPage('wallet')">
+                        <i class="fas fa-wallet"></i> ৳ <span id="userBalance">0</span>
+                    </button>
+                    <span id="userPhone" class="user-phone"></span>
+                    <button class="btn-logout-small" onclick="logout()">লগআউট</button>
+                </div>
+                <button id="loginBtn" class="btn-primary" onclick="openAuth()">লগইন / রেজিস্ট্রেশন</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container nav-content">
+            <a href="#" class="nav-link active" data-page="home" onclick="showPage('home')">
+                <i class="fas fa-home"></i> হোম
+            </a>
+            <a href="#" class="nav-link" data-page="lobby" onclick="showPage('lobby')">
+                <i class="fas fa-gamepad"></i> খেলুন
+            </a>
+            <a href="#" class="nav-link" data-page="wallet" onclick="showPage('wallet')">
+                <i class="fas fa-wallet"></i> ওয়ালেট
+            </a>
+            <a href="#" class="nav-link" data-page="history" onclick="showPage('history')">
+                <i class="fas fa-history"></i> হিস্ট্রি
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Home Page -->
+            <div id="page-home" class="page">
+                <div class="hero">
+                    <h1>লুডু আড্ডা খেলুন, টাকা জিতুন</h1>
+                    <p>সরাসরি ক্লায়েন্ট নিয়ন্ত্রিত প্ল্যাটফর্ম</p>
+                    <button class="btn-primary btn-large" onclick="showPage('lobby')">এখনই খেলুন <i class="fas fa-arrow-right"></i></button>
+                </div>
+                
+                <div class="info-cards">
+                    <div class="info-card">
+                        <i class="fas fa-coins"></i>
+                        <h3>সর্বনিম্ন বেট</h3>
+                        <p>১০০ টাকা</p>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <h3>সর্বনিম্ন রিচার্জ</h3>
+                        <p>৫০০ টাকা</p>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-hand-holding-usd"></i>
+                        <h3>সর্বনিম্ন উত্তোলন</h3>
+                        <p>২০০০ টাকা</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lobby Page -->
+            <div id="page-lobby" class="page" style="display: none;">
+                <div class="page-header">
+                    <h1>গেম লবি</h1>
+                    <button class="btn-primary" onclick="openCreateRoom()">রুম তৈরি করুন</button>
+                </div>
+                
+                <div class="table-info">
+                    <div class="table-row">
+                        <span>বেট</span>
+                        <span>টেবিল ফি</span>
+                        <span>জেতা যাবে</span>
+                        <span>খেলোয়াড়</span>
+                        <span>অ্যাকশন</span>
+                    </div>
+                </div>
+                <div id="roomsList" class="rooms-list"></div>
+            </div>
+
+            <!-- Create Room Modal -->
+            <div id="createRoomModal" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2>রুম তৈরি করুন</h2>
+                        <span class="close" onclick="closeCreateRoom()">&times;</span>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>বেট পরিমাণ নির্বাচন করুন</label>
+                            <div class="bet-options">
+                                <button class="bet-btn" onclick="selectBet(100)">১০০ ৳</button>
+                                <button class="bet-btn" onclick="selectBet(200)">২০০ ৳</button>
+                                <button class="bet-btn" onclick="selectBet(500)">৫০০ ৳</button>
+                                <button class="bet-btn" onclick="selectBet(1000)">১০০০ ৳</button>
+                                <button class="bet-btn" onclick="selectBet(2000)">২০০০ ৳</button>
+                                <button class="bet-btn" onclick="selectBet(5000)">৫০০০ ৳</button>
+                            </div>
+                            <input type="number" id="customBet" placeholder="কাস্টম বেট লিখুন" onchange="selectBet(this.value)">
+                        </div>
+                        <div class="room-info">
+                            <p>বেট: <strong id="showBet">১০০</strong> ৳</p>
+                            <p>টেবিল ফি: <strong>১০</strong> ৳</p>
+                            <p>মোট প্রয়োজন: <strong id="showTotal">১১০</strong> ৳</p>
+                            <p class="text-success">জেতা যাবে: <strong id="showWin">১৮০</strong> ৳</p>
+                        </div>
+                        <button class="btn-primary full" onclick="createRoom()">রুম তৈরি করুন</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Wallet Page -->
+            <div id="page-wallet" class="page" style="display: none;">
+                <h1>ওয়ালেট</h1>
+                <div class="wallet-balance">
+                    <p>মোট ব্যালেন্স</p>
+                    <h2>৳ <span id="walletBalance">0</span></h2>
+                    <p class="text-muted">হোল্ড ব্যালেন্স: ৳ <span id="holdBalance">0</span></p>
+                </div>
+                <div class="wallet-actions">
+                    <button class="wallet-action-btn deposit" onclick="showDeposit()">
+                        <i class="fas fa-plus-circle"></i> টাকা যোগ করুন
+                    </button>
+                    <button class="wallet-action-btn withdraw" onclick="showWithdraw()">
+                        <i class="fas fa-minus-circle"></i> টাকা উত্তোলন করুন
+                    </button>
+                </div>
+                
+                <div class="card mt-20">
+                    <div class="card-header">
+                        <h2>লেনদেনের ইতিহাস</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="tabs">
+                            <button class="tab-btn active" onclick="loadMyDeposits()">ডিপোজিট</button>
+                            <button class="tab-btn" onclick="loadMyWithdraws()">উইথড্র</button>
+                        </div>
+                        <div id="depositHistory" class="history-list"></div>
+                        <div id="withdrawHistory" class="history-list" style="display: none;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Deposit Modal -->
+            <div id="depositModal" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2>টাকা যোগ করুন (Send Money)</h2>
+                        <span class="close" onclick="closeDeposit()">&times;</span>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>পদ্ধতি নির্বাচন করুন</label>
+                            <select id="depositMethod">
+                                <option value="bkash">বিকাশ</option>
+                                <option value="nagad">নগদ</option>
+                                <option value="rocket">রকেট</option>
+                            </select>
+                        </div>
+                        <div class="deposit-info">
+                            <p>প্রাপক নম্বর: <strong id="receiverNumber">017XXXXXXXX</strong></p>
+                            <p class="text-danger">সর্বনিম্ন রিচার্জ: ৫০০ টাকা</p>
+                        </div>
+                        <div class="form-group">
+                            <label>পরিমাণ</label>
+                            <input type="number" id="depositAmount" placeholder="টাকার পরিমাণ">
+                        </div>
+                        <div class="form-group">
+                            <label>আপনার Send Money করা নম্বর</label>
+                            <input type="text" id="senderNumber" placeholder="01XXXXXXXXX">
+                        </div>
+                        <div class="form-group">
+                            <label>TrxID</label>
+                            <input type="text" id="trxId" placeholder="Transaction ID">
+                        </div>
+                        <button class="btn-primary full" onclick="submitDeposit()">রিকোয়েস্ট জমা দিন</button>
+                        <p class="text-muted mt-10" style="font-size: 13px;">নোট: উপরের নম্বরে Send Money করে তথ্য সাবমিট করুন</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Withdraw Modal -->
+            <div id="withdrawModal" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2>টাকা উত্তোলন করুন</h2>
+                        <span class="close" onclick="closeWithdraw()">&times;</span>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>পদ্ধতি নির্বাচন করুন</label>
+                            <select id="withdrawMethod">
+                                <option value="bkash">বিকাশ</option>
+                                <option value="nagad">নগদ</option>
+                                <option value="rocket">রকেট</option>
+                            </select>
+                        </div>
+                        <p class="text-danger">সর্বনিম্ন উত্তোলন: ২০০০ টাকা</p>
+                        <div class="form-group">
+                            <label>পরিমাণ</label>
+                            <input type="number" id="withdrawAmount" placeholder="টাকার পরিমাণ">
+                        </div>
+                        <div class="form-group">
+                            <label>গ্রহণকারী নম্বর</label>
+                            <input type="text" id="accountNumber" placeholder="01XXXXXXXXX">
+                        </div>
+                        <button class="btn-primary full" onclick="submitWithdraw()">রিকোয়েস্ট জমা দিন</button>
+                        <p class="text-muted mt-10" style="font-size: 13px;">রিকোয়েস্ট সাবমিটের সাথে সাথেই টাকা হোল্ড হয়ে যাবে</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Room Page -->
+            <div id="page-room" class="page" style="display: none;">
+                <div class="room-header">
+                    <button class="btn-back" onclick="leaveCurrentRoom()"><i class="fas fa-arrow-left"></i> লবি তে ফিরে যান</button>
+                    <h2>রুম: <span id="currentRoomCode"></span></h2>
+                    <span class="room-status" id="roomStatus">অপেক্ষা করছে...</span>
+                </div>
+                <div class="room-players">
+                    <div class="room-player" id="player1">
+                        <div class="player-avatar">প্লেয়ার ১</div>
+                        <p>অপেক্ষমান</p>
+                    </div>
+                    <div class="vs">VS</div>
+                    <div class="room-player" id="player2">
+                        <div class="player-avatar">প্লেয়ার ২</div>
+                        <p>অপেক্ষমান</p>
+                    </div>
+                </div>
+                <div class="room-info-box">
+                    <p>বেট: <strong id="roomBet">0</strong> ৳ | টেবিল ফি: <strong id="roomFee">0</strong> ৳</p>
+                </div>
+                <div id="gameArea" style="display: none;">
+                    <p class="text-center">গেম শুরু হয়েছে! (সাধারণ লুডু বোর্ড)</p>
+                </div>
+                <div class="room-chat">
+                    <h3>রুম চ্যাট</h3>
+                    <div id="roomChatMessages" class="chat-messages"></div>
+                    <div class="chat-input">
+                        <input type="text" id="chatInput" placeholder="বার্তা লিখুন...">
+                        <button onclick="sendChat()"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- History Page -->
+            <div id="page-history" class="page" style="display: none;">
+                <h1>খেলার হিস্ট্রি</h1>
+                <div class="card">
+                    <div class="card-body">
+                        <p class="text-muted">গেম হিস্ট্রি শীঘ্রই যোগ করা হবে</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

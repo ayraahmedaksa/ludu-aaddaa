@@ -1,0 +1,11 @@
+/* Shared Ludu Aaddaa visual language: matches the Android app */
+:root{--app-green:#123f36;--app-deep:#101f1c;--app-gold:#e6c78a;--app-muted:#a6b7aa;--app-card:#1d342b}
+body{background:radial-gradient(ellipse at top,#25463d,#0b1512 80%)!important;color:#edf4ee!important;font-family:'SolaimanLipi','Noto Sans Bengali',sans-serif}
+.header,.topbar,.sidebar,.side{background:linear-gradient(160deg,#162e27,#101f1c 65%)!important;border-color:#ffffff12!important}
+.logo,.brand,.top h1,.page-title,.section-title{color:#edf4ee!important}.logo span,.brand span{color:var(--app-gold)!important}
+.card,.panel,.stat,.table-container,.content-card,.profile,.wallet-card,.room-card,.chat-panel{background:linear-gradient(140deg,#243c32,#1b2e26)!important;color:#eef4e8!important;border:1px solid #cbdbbc1c!important;box-shadow:0 12px 30px #0002!important}
+button,.btn,.primary-btn,.new{background:linear-gradient(110deg,#f0d8a6,#cfaa67)!important;color:#243c2f!important;border-color:#f5dfab66!important}
+.nav-item,.menu button{color:#a6b7aa!important}.nav-item.active,.menu button.active,.nav-item:hover,.menu button:hover{background:#d6c28e14!important;color:#efd5a1!important}
+table th{color:#b6c9bb!important}table td{border-color:#ffffff12!important;color:#edf4ee!important}
+.badge,.status,.notice,.event{background:#d6c28e14!important;color:#e5d5ad!important;border-color:#d6c28e20!important}
+input,select,textarea{background:#162e27!important;color:#edf4ee!important;border:1px solid #ffffff1f!important}

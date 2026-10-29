@@ -1,0 +1,10 @@
+server/node_modules/
+android/app/build/
+android/keystore/*.jks
+dist/*.idsig
+reference-lx-ludo.apk
+lxludobd.apk
+reference-lx-ludo-extracted-*/
+*.env
+*.env.*
+!.env.example

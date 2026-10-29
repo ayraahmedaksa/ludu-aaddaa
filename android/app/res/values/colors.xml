@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="brand_navy">#0B244F</color>
+    <color name="brand_blue">#176CC4</color>
+    <color name="brand_blue_light">#43B5FA</color>
+    <color name="brand_gold">#FFD44C</color>
+    <color name="launch_background">#143D7E</color>
+</resources>

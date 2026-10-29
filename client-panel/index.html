@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<link rel="stylesheet" href="../shared/app-theme.css">
+<link rel="stylesheet" href="../shared/reference-site-theme.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>লুডু আড্ডা - ক্লায়েন্ট প্যানেল</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Login Page -->
+    <div id="loginPage" class="login-container">
+        <div class="login-box">
+            <div class="login-header">
+                <h1>লুডু আড্ডা</h1>
+                <p>ক্লায়েন্ট কন্ট্রোল প্যানেল</p>
+            </div>
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label>ইউজারনেম</label>
+                    <input type="text" id="username" required placeholder="ইউজারনেম লিখুন">
+                </div>
+                <div class="form-group">
+                    <label>পাসওয়ার্ড</label>
+                    <input type="password" id="password" required placeholder="পাসওয়ার্ড লিখুন">
+                </div>
+                <button type="submit" class="btn-login">লগইন করুন</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main Dashboard -->
+    <div id="dashboardPage" class="dashboard" style="display: none;">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>লুডু আড্ডা</h2>
+                <p id="agentName">ক্লায়েন্ট প্যানেল</p>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-page="overview">
+                    <i class="fas fa-home"></i> ড্যাশবোর্ড
+                </a>
+                <a href="#" class="nav-item" data-page="deposits">
+                    <i class="fas fa-arrow-down"></i> ডিপোজিট রিকোয়েস্ট
+                    <span class="badge" id="depositBadge">0</span>
+                </a>
+                <a href="#" class="nav-item" data-page="withdraws">
+                    <i class="fas fa-arrow-up"></i> উইথড্র রিকোয়েস্ট
+                    <span class="badge" id="withdrawBadge">0</span>
+                </a>
+                <a href="#" class="nav-item" data-page="users">
+                    <i class="fas fa-users"></i> ইউজার ম্যানেজমেন্ট
+                </a>
+                <a href="#" class="nav-item" data-page="rooms">
+                    <i class="fas fa-gamepad"></i> রুম মনিটরিং
+                </a>
+                <a href="#" class="nav-item" data-page="chats">
+                    <i class="fas fa-comments"></i> চ্যাট মনিটরিং
+                </a>
+                <a href="#" class="nav-item" data-page="settings">
+                    <i class="fas fa-cog"></i> সেটিংস
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <button onclick="logout()" class="btn-logout">
+                    <i class="fas fa-sign-out-alt"></i> লগআউট
+                </button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="content-header">
+                <h1 id="pageTitle">ড্যাশবোর্ড</h1>
+                <div class="header-actions">
+                    <span id="currentTime"></span>
+                </div>
+            </header>
+
+            <!-- Overview Page -->
+            <div id="page-overview" class="page-content">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon blue"><i class="fas fa-users"></i></div>
+                        <div class="stat-info">
+                            <h3 id="totalUsers">0</h3>
+                            <p>মোট ইউজার</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon green"><i class="fas fa-user-plus"></i></div>
+                        <div class="stat-info">
+                            <h3 id="todayUsers">0</h3>
+                            <p>আজকের রেজিস্ট্রেশন</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon orange"><i class="fas fa-arrow-down"></i></div>
+                        <div class="stat-info">
+                            <h3 id="pendingDeposits">0</h3>
+                            <p>পেন্ডিং ডিপোজিট</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon red"><i class="fas fa-arrow-up"></i></div>
+                        <div class="stat-info">
+                            <h3 id="pendingWithdraws">0</h3>
+                            <p>পেন্ডিং উইথড্র</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h2>সাম্প্রতিক কার্যক্রম</h2>
+                    </div>
+                    <div class="card-body">
+                        <p class="text-muted">ক্লায়েন্ট প্যানেল থেকে সকল কার্যক্রম মনিটর করুন</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Deposits Page -->
+            <div id="page-deposits" class="page-content" style="display: none;">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>ডিপোজিট রিকোয়েস্টসমূহ</h2>
+                        <select id="depositFilter" onchange="loadDeposits()">
+                            <option value="pending">পেন্ডিং</option>
+                            <option value="approved">অনুমোদিত</option>
+                            <option value="rejected">প্রত্যাখ্যাত</option>
+                        </select>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>ইউজার</th>
+                                        <th>পরিমাণ</th>
+                                        <th>পদ্ধতি</th>
+                                        <th>সেন্ডার নম্বর</th>
+                                        <th>TrxID</th>
+                                        <th>তারিখ</th>
+                                        <th>অ্যাকশন</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="depositsTable"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Withdraws Page -->
+            <div id="page-withdraws" class="page-content" style="display: none;">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>উইথড্র রিকোয়েস্টসমূহ</h2>
+                        <select id="withdrawFilter" onchange="loadWithdraws()">
+                            <option value="pending">পেন্ডিং</option>
+                            <option value="paid">প্রদান করা হয়েছে</option>
+                            <option value="rejected">প্রত্যাখ্যাত</option>
+                        </select>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>ইউজার</th>
+                                        <th>পরিমাণ</th>
+                                        <th>পদ্ধতি</th>
+                                        <th>অ্যাকাউন্ট নম্বর</th>
+                                        <th>ব্যালেন্স</th>
+                                        <th>তারিখ</th>
+                                        <th>অ্যাকশন</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="withdrawsTable"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Users Page -->
+            <div id="page-users" class="page-content" style="display: none;">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>ইউজার তালিকা</h2>
+                        <input type="text" id="userSearch" placeholder="নাম বা নম্বর অনুসন্ধান..." onkeyup="loadUsers()">
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>নম্বর</th>
+                                        <th>নাম</th>
+                                        <th>ব্যালেন্স</th>
+                                        <th>হোল্ড ব্যালেন্স</th>
+                                        <th>স্ট্যাটাস</th>
+                                        <th>রেজিস্ট্রেশন</th>
+                                        <th>অ্যাকশন</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="usersTable"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rooms Page -->
+            <div id="page-rooms" class="page-content" style="display: none;">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>লাইভ রুম মনিটরিং</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>রুম কোড</th>
+                                        <th>বেট</th>
+                                        <th>টেবিল ফি</th>
+                                        <th>খেলোয়াড়</th>
+                                        <th>স্ট্যাটাস</th>
+                                        <th>তৈরি হয়েছে</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="roomsTable"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chats Page -->
+            <div id="page-chats" class="page-content" style="display: none;">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>রুম চ্যাট মনিটরিং</h2>
+                        <input type="number" id="chatRoomId" placeholder="রুম ID লিখুন" onchange="loadChats()">
+                    </div>
+                    <div class="card-body">
+                        <div id="chatLogs" class="chat-logs"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings Page -->
+            <div id="page-settings" class="page-content" style="display: none;">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>সিস্টেম সেটিংস</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="settings-grid">
+                            <div class="form-group">
+                                <label>সর্বনিম্ন রিচার্জ (টাকা)</label>
+                                <input type="number" id="min_deposit" value="500">
+                            </div>
+                            <div class="form-group">
+                                <label>সর্বনিম্ন উত্তোলন (টাকা)</label>
+                                <input type="number" id="min_withdraw" value="2000">
+                            </div>
+                            <div class="form-group">
+                                <label>সর্বনিম্ন বেট (টাকা)</label>
+                                <input type="number" id="min_bet" value="100">
+                            </div>
+                            <div class="form-group">
+                                <label>সর্বোচ্চ বেট (টাকা)</label>
+                                <input type="number" id="max_bet" value="5000">
+                            </div>
+                            <div class="form-group">
+                                <label>টেবিল ফি প্রতি খেলোয়াড় (টাকা)</label>
+                                <input type="number" id="table_fee_per_player" value="10">
+                            </div>
+                        </div>
+                        <button class="btn-primary" onclick="saveSettings()">সেটিংস সংরক্ষণ করুন</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Balance Update Modal -->
+    <div id="balanceModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>ব্যালেন্স আপডেট করুন</h3>
+                <span class="close" onclick="closeBalanceModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="balanceUserId">
+                <div class="form-group">
+                    <label>পরিমাণ</label>
+                    <input type="number" id="balanceAmount" placeholder="টাকার পরিমাণ লিখুন">
+                </div>
+                <div class="form-group">
+                    <label>টাইপ</label>
+                    <select id="balanceType">
+                        <option value="add">যোগ করুন (+)</option>
+                        <option value="subtract">বিয়োগ করুন (-)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>বিবরণ</label>
+                    <input type="text" id="balanceDesc" placeholder="বিবরণ লিখুন">
+                </div>
+                <button class="btn-primary" onclick="updateBalance()">আপডেট করুন</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

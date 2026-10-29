@@ -1,0 +1,13 @@
+/* LX-style navy/purple arcade theme for the web surfaces */
+:root{--ref-navy:#080e32;--ref-blue:#172968;--ref-purple:#3b247d;--ref-yellow:#ffd52f;--ref-text:#fff;--ref-muted:#aab6e8}
+body{background:radial-gradient(circle at 50% -10%,#3d3790 0,#171c59 38%,#080e32 82%)!important;color:var(--ref-text)!important}
+.header,.topbar,.sidebar,.side{background:linear-gradient(180deg,#10194c,#090e32)!important;border-color:#6275d455!important}
+.card,.panel,.stat,.table-container,.content-card,.profile,.wallet-card,.room-card,.chat-panel{background:linear-gradient(145deg,#263486,#171d5c)!important;border:2px solid #6675d066!important;color:#fff!important;box-shadow:0 10px 25px #02052299!important}
+.hero,.wallet-hero{background:linear-gradient(135deg,#382487,#1a347e 58%,#0d194b)!important;border:2px solid #ffda3b88!important}
+button,.btn,.primary-btn,.new,.primary{background:linear-gradient(180deg,#ffe75b,#f0a900)!important;color:#191a47!important;border:2px solid #fff1a0!important;box-shadow:0 4px 0 #9a5f00!important;font-weight:700}
+.logo,.brand,.top h1,.page-title,.section-title{color:#fff!important}.logo span,.brand span,.wallet-hero strong{color:var(--ref-yellow)!important}
+.nav-item,.menu button{color:#c5cffb!important}.nav-item.active,.menu button.active,.nav-item:hover,.menu button:hover{background:#4b3697!important;color:#fff!important;border-left:3px solid var(--ref-yellow)!important}
+table th{color:#ffe45a!important}table td{border-color:#6573bd55!important;color:#f7f8ff!important}
+.badge,.status,.notice,.event{background:#29377d!important;color:#ffe45a!important;border-color:#7381d977!important}
+input,select,textarea{background:#11194c!important;color:#fff!important;border:1px solid #7180d2!important}
+.muted,.top p,.stat span{color:var(--ref-muted)!important}
