@@ -15,7 +15,7 @@ INSERT INTO `settings` (`key`, `value`) VALUES
 ('min_bet', '100'),
 ('max_bet', '5000'),
 ('table_fee_per_player', '10'),
-('deposit_numbers', '{"bkash":["017XXXXXXXX"],"nagad":["017XXXXXXXX"],"rocket":["017XXXXXXXX"]}'),
+('deposit_numbers', '{"bkash":["01670201266"],"nagad":["017XXXXXXXX"],"rocket":["017XXXXXXXX"]}'),
 ('site_name', 'লুডু আড্ডা'),
 ('maintenance', '0')
 ON DUPLICATE KEY UPDATE `value` = VALUES(`value`);
