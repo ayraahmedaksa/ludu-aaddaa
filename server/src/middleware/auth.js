@@ -13,7 +13,11 @@ export const protect = async (req, res, next) => {
     }
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET || 'secret');
-    if (decoded.role === "admin" && decoded.id === "temporary-admin") {`r`n      req.agent = { id: "temporary-admin", username: process.env.ADMIN_USERNAME || "admin", role: "admin", temporary: true };`r`n      return next();`r`n    }`r`n    const [users] = await pool.query('SELECT id, phone, full_name, balance, hold_balance, status FROM users WHERE id = ?', [decoded.id]);
+    if (decoded.role === "admin" && decoded.id === "temporary-admin") {
+      req.agent = { id: "temporary-admin", username: process.env.ADMIN_USERNAME || "admin", role: "admin", temporary: true };
+      return next();
+    }
+    const [users] = await pool.query('SELECT id, phone, full_name, balance, hold_balance, status FROM users WHERE id = ?', [decoded.id]);
     
     if (users.length === 0) {
       return res.status(401).json({ success: false, message: 'ইউজার পাওয়া যায়নি।' });
@@ -42,7 +46,11 @@ export const protectAdmin = async (req, res, next) => {
     }
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET || 'secret');
-    if (decoded.role === "admin" && decoded.id === "temporary-admin") {`r`n      req.agent = { id: "temporary-admin", username: process.env.ADMIN_USERNAME || "admin", role: "admin", temporary: true };`r`n      return next();`r`n    }`r`n    const [agents] = await pool.query('SELECT * FROM agents WHERE id = ? AND status = "active"', [decoded.id]);
+    if (decoded.role === "admin" && decoded.id === "temporary-admin") {
+      req.agent = { id: "temporary-admin", username: process.env.ADMIN_USERNAME || "admin", role: "admin", temporary: true };
+      return next();
+    }
+    const [agents] = await pool.query('SELECT * FROM agents WHERE id = ? AND status = "active"', [decoded.id]);
     
     if (agents.length === 0) {
       return res.status(401).json({ success: false, message: 'অননুমোদিত অ্যাকসেস।' });

@@ -3,7 +3,13 @@ import { hashPassword, comparePassword, generateToken } from '../utils/helpers.j
 
 export const adminLogin = async (req, res) => {
   try {
-    const { username, password } = req.body;`r`n    const tempUser = process.env.ADMIN_USERNAME || "admin";`r`n    const tempPass = process.env.ADMIN_PASSWORD || "admin123";`r`n    if (process.env.TEMP_ADMIN_LOGIN !== "false" && username === tempUser && password === tempPass) {`r`n      const token = generateToken({ id: "temporary-admin", role: "admin" });`r`n      return res.json({ success: true, token, agent: { id: "temporary-admin", username: tempUser, role: "admin", temporary: true } });`r`n    }
+    const { username, password } = req.body;
+    const tempUser = process.env.ADMIN_USERNAME || "admin";
+    const tempPass = process.env.ADMIN_PASSWORD || "admin123";
+    if (process.env.TEMP_ADMIN_LOGIN !== "false" && username === tempUser && password === tempPass) {
+      const token = generateToken({ id: "temporary-admin", role: "admin" });
+      return res.json({ success: true, token, agent: { id: "temporary-admin", username: tempUser, role: "admin", temporary: true } });
+    }
     const [agents] = await pool.query('SELECT * FROM agents WHERE username = ?', [username]);
     
     if (agents.length === 0) {
