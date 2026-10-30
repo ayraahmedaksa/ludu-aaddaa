@@ -14,6 +14,7 @@ import chatRoutes from './routes/chat.js';
 import tournamentRoutes from './routes/tournament.js';
 import playerAuthRoutes from './routes/playerAuth.js';
 import playerRoutes from './routes/player.js';
+import playerRoomRoutes from './routes/playerRoom.js';
 import { initGameSocket } from './sockets/gameSocket.js';
 import { supabaseConfigured } from './config/supabase.js';
 
@@ -48,6 +49,7 @@ app.use('/api/chat', chatRoutes);
 app.use('/api/tournaments', tournamentRoutes);
 app.use('/api/player-auth', playerAuthRoutes);
 app.use('/api/player', playerRoutes);
+app.use('/api/player/rooms', playerRoomRoutes);
 
 import pool from './config/db.js';
 
