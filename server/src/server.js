@@ -12,6 +12,7 @@ import adminRoutes from './routes/admin.js';
 import roomRoutes from './routes/room.js';
 import chatRoutes from './routes/chat.js';
 import { initGameSocket } from './sockets/gameSocket.js';
+import { supabaseConfigured } from './config/supabase.js';
 
 dotenv.config();
 
@@ -33,7 +34,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
 app.get('/api/health', (req, res) => {
-  res.json({ success: true, message: 'Ludu Aaddaa Server Running', time: new Date() });
+  res.json({ success: true, message: 'Ludu Aaddaa Server Running', database: supabaseConfigured ? 'supabase-configured' : 'not-configured', time: new Date() });
 });
 
 app.use('/api/auth', authRoutes);
