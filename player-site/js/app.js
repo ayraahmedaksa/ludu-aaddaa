@@ -37,7 +37,7 @@ async function login() {
     const password = document.getElementById('loginPass').value;
     
     try {
-        const res = await fetch(`${API_URL}/auth/login`, {
+        const res = await fetch(`${API_URL}/player-auth/login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ phone, password })
@@ -63,13 +63,13 @@ async function register() {
     const phone = document.getElementById('regPhone').value;
     const password = document.getElementById('regPass').value;
     const full_name = document.getElementById('regName').value;
-    const referral_code = document.getElementById('refCode').value;
+    const confirmPassword = document.getElementById('regPassConfirm').value;
     
     try {
-        const res = await fetch(`${API_URL}/auth/register`, {
+        const res = await fetch(`${API_URL}/player-auth/signup`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ phone, password, full_name, referral_code })
+            body: JSON.stringify({ phone, password, confirmPassword, name: full_name })
         });
         const data = await res.json();
         
