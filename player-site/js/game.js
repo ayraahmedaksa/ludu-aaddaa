@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:5000/api';
+const API_URL = 'https://ludu-aaddaa-1.onrender.com/api';
 const SOCKET_URL = 'http://localhost:5000';
 let token = localStorage.getItem('userToken');
 let currentUser = null;
