@@ -40,6 +40,7 @@ router.post('/withdraws/:id/reject', protectAdmin, rejectWithdraw);
 router.get('/settings', protectAdmin, getSettings);
 router.post('/settings', protectAdmin, updateSettings);
 router.get('/rooms', protectAdmin, supabaseAdmin.rooms);
+router.post('/tournaments', protectAdmin, supabaseAdmin.createTournament);
 router.get('/chats/:roomId', protectAdmin, getChatLogs);
 
 export default router;

@@ -55,3 +55,12 @@ export const rooms = async (req, res) => {
   if (error) return res.status(500).json({ success: false, message: error.message });
   res.json({ success: true, rooms: data || [] });
 };
+
+export const createTournament = async (req, res) => {
+  if (!ready(res)) return;
+  const { name, entry_fee, prize_pool, max_players, starts_at } = req.body;
+  if (!name || !starts_at) return res.status(400).json({ success: false, message: 'নাম ও সময় আবশ্যক।' });
+  const { data, error } = await supabase.from('tournaments').insert({ name, entry_fee: Number(entry_fee || 100), prize_pool: Number(prize_pool || 0), max_players: Number(max_players || 32), starts_at }).select().single();
+  if (error) return res.status(500).json({ success: false, message: error.message });
+  res.status(201).json({ success: true, tournament: data });
+};
