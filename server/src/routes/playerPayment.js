@@ -1,0 +1,1 @@
+import express from 'express';import { protectSupabase } from '../middleware/supabaseAuth.js';import { deposit,withdraw } from '../controllers/playerPaymentController.js';const router=express.Router();router.use(protectSupabase);router.post('/deposit',deposit);router.post('/withdraw',withdraw);export default router;
