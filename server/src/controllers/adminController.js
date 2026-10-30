@@ -275,7 +275,7 @@ export const getSettings = async (req, res) => {
 
 export const updateSettings = async (req, res) => {
   try {
-    const { key, value } } = req.body;
+    const { key, value } = req.body;
     await pool.query('INSERT INTO settings (`key`, `value`) VALUES (?, ?) ON DUPLICATE KEY UPDATE `value` = ?', [key, JSON.stringify(value), JSON.stringify(value)]);
     res.json({ success: true, message: 'সেটিংস আপডেট হয়েছে।' });
   } catch (error) {
