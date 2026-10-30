@@ -17,23 +17,29 @@ import {
   getAllRooms,
   getChatLogs
 } from '../controllers/adminController.js';
+import * as supabaseAdmin from '../controllers/supabaseAdminController.js';
 
 const router = express.Router();
 
 router.post('/login', adminLogin);
-router.get('/dashboard', protectAdmin, dashboard);
-router.get('/users', protectAdmin, getAllUsers);
+router.get('/dashboard', protectAdmin, supabaseAdmin.dashboard);
+router.get('/supabase/dashboard', protectAdmin, supabaseAdmin.dashboard);
+router.get('/supabase/users', protectAdmin, supabaseAdmin.users);
+router.get('/supabase/deposits', protectAdmin, supabaseAdmin.deposits);
+router.get('/supabase/withdrawals', protectAdmin, supabaseAdmin.withdrawals);
+router.get('/supabase/rooms', protectAdmin, supabaseAdmin.rooms);
+router.get('/users', protectAdmin, supabaseAdmin.users);
 router.post('/users/:id/balance', protectAdmin, updateUserBalance);
 router.post('/users/:id/ban', protectAdmin, toggleUserBan);
-router.get('/deposits', protectAdmin, getDepositRequests);
+router.get('/deposits', protectAdmin, supabaseAdmin.deposits);
 router.post('/deposits/:id/approve', protectAdmin, approveDeposit);
 router.post('/deposits/:id/reject', protectAdmin, rejectDeposit);
-router.get('/withdraws', protectAdmin, getWithdrawRequests);
+router.get('/withdraws', protectAdmin, supabaseAdmin.withdrawals);
 router.post('/withdraws/:id/paid', protectAdmin, markWithdrawPaid);
 router.post('/withdraws/:id/reject', protectAdmin, rejectWithdraw);
 router.get('/settings', protectAdmin, getSettings);
 router.post('/settings', protectAdmin, updateSettings);
-router.get('/rooms', protectAdmin, getAllRooms);
+router.get('/rooms', protectAdmin, supabaseAdmin.rooms);
 router.get('/chats/:roomId', protectAdmin, getChatLogs);
 
 export default router;
