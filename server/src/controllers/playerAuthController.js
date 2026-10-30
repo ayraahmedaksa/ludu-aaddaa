@@ -12,7 +12,8 @@ export const signup = async (req, res) => {
   if (created.error) return res.status(400).json({ success:false, message: created.error.message });
   const { data: profile, error } = await supabase.from('profiles').insert({ id: created.data.user.id, phone: normalized, full_name: name }).select().single();
   if (error) return res.status(500).json({ success:false, message:error.message });
-  res.status(201).json({ success:true, user: profile });
+  const session = await supabase.auth.signInWithPassword({ email: emailFor(normalized), password });
+  res.status(201).json({ success:true, token: session.data?.session?.access_token, user: profile });
 };
 
 export const login = async (req, res) => {
