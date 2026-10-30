@@ -41,6 +41,10 @@ router.get('/settings', protectAdmin, getSettings);
 router.post('/settings', protectAdmin, updateSettings);
 router.get('/rooms', protectAdmin, supabaseAdmin.rooms);
 router.post('/tournaments', protectAdmin, supabaseAdmin.createTournament);
+router.post('/supabase/deposits/:id/approve', protectAdmin, supabaseAdmin.approveDeposit);
+router.post('/supabase/deposits/:id/reject', protectAdmin, supabaseAdmin.rejectDeposit);
+router.post('/supabase/withdraws/:id/paid', protectAdmin, supabaseAdmin.payWithdrawal);
+router.post('/supabase/withdraws/:id/reject', protectAdmin, supabaseAdmin.rejectWithdrawal);
 router.get('/chats/:roomId', protectAdmin, getChatLogs);
 
 export default router;
