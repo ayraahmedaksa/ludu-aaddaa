@@ -41,6 +41,8 @@ router.get('/settings', protectAdmin, getSettings);
 router.post('/settings', protectAdmin, updateSettings);
 router.get('/rooms', protectAdmin, supabaseAdmin.rooms);
 router.post('/tournaments', protectAdmin, supabaseAdmin.createTournament);
+router.get('/tournaments', protectAdmin, supabaseAdmin.tournaments);
+router.post('/tournaments/:id/cancel', protectAdmin, supabaseAdmin.cancelTournament);
 router.post('/supabase/deposits/:id/approve', protectAdmin, supabaseAdmin.approveDeposit);
 router.post('/supabase/deposits/:id/reject', protectAdmin, supabaseAdmin.rejectDeposit);
 router.post('/supabase/withdraws/:id/paid', protectAdmin, supabaseAdmin.payWithdrawal);
